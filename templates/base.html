@@ -27,10 +27,13 @@
                 <ul class="right hide-on-med-and-down">
                     <li><a href="#">Home</a></li>
                     <li><a href="{{ url_for('get_dishes') }}">Dishes</a></li>
+                    {% if session.user %}
                     <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+                    <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                    {% else %}
                     <li><a href="{{ url_for('login') }}">Log In</a></li>
-                    <li><a href="#">Log Out</a></li>
                     <li><a href="{{ url_for('register') }}">Register</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
@@ -39,10 +42,13 @@
             <h4 class="center-align deep-orange-text lighten-4 text-darken-1">Romanian Cuisine</h4>
             <li><a href="#">Home</a></li>
             <li><a href="{{ url_for('get_dishes') }}">Dishes</a></li>
+            {% if session.user %}
             <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+            {% else %}
             <li><a href="{{ url_for('login') }}">Log In</a></li>
-            <li><a href="#">Log Out</a></li>
             <li><a href="{{ url_for('register') }}">Register</a></li>
+            {% endif %}
         </ul>
 
     </header>
@@ -51,11 +57,11 @@
         <!--- flash message -->
         {% with messages = get_flashed_messages() %}
         {% if messages %}
-            {% for message in messages %}
-            <div class="row flashes">
-                <h4 class="deep-orange lighten-1 center-align">{{ message }}</h4>
-            </div>
-            {% endfor %}
+        {% for message in messages %}
+        <div class="row flashes">
+            <h4 class="deep-orange lighten-1 center-align">{{ message }}</h4>
+        </div>
+        {% endfor %}
         {% endif %}
         {% endwith %}
     </section>
@@ -67,23 +73,27 @@
 
     <footer class="page-footer">
         <div class="container">
-          <div class="row">
-            <div class="col l6 s12">
-              <h5 class="white-text text-shadow text-darken-1">Find Us</h5>
-              <p class="white-text text-lighten-4 text-shadow text-darken-1">If you have more questions about our food, contact us at .</p>
-              <p class="text-shadow text-darken-1">romaian_cuisine@romaniancuisine.com</p>
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text text-shadow text-darken-1">Find Us</h5>
+                    <p class="white-text text-lighten-4 text-shadow text-darken-1">If you have more questions about our
+                        food, contact us at .</p>
+                    <p class="text-shadow text-darken-1">romaian_cuisine@romaniancuisine.com</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text text-shadow text-darken-1">Follow us for more goodies!</h5>
+                    <ul class="center-align">
+                        <li><a href="https://www.facebook.com/" class="text-shadow text-darken-1" target="_blank"><i
+                                    class="fab fa-facebook"></i></a></li>
+                        <li><a href="https://www.instagram.com/" class="text-shadow text-darken-1" target="_blank"><i
+                                    class="fab fa-instagram"></i></a></li>
+                        <li><a href="https://twitter.com/?lang=en-gb" class="text-shadow text-darken-1"
+                                target="_blank"><i class="fab fa-twitter"></i></a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="col l4 offset-l2 s12">
-              <h5 class="white-text text-shadow text-darken-1">Follow us for more goodies!</h5>
-              <ul class="center-align">
-                <li><a href="https://www.facebook.com/" class="text-shadow text-darken-1" target="_blank"><i class="fab fa-facebook"></i></a></li>
-                <li><a href="https://www.instagram.com/" class="text-shadow text-darken-1" target="_blank"><i class="fab fa-instagram"></i></a></li>
-                <li><a href="https://twitter.com/?lang=en-gb" class="text-shadow text-darken-1" target="_blank"><i class="fab fa-twitter"></i></a></li>
-            </ul>
-            </div>
-          </div>
         </div>
-      </footer>
+    </footer>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
