@@ -24,6 +24,11 @@ def get_dishes():
     dishes = mongo.db.dishes.find()
     return render_template("dishes.html", dishes=dishes)
 
+@app.route("/get_categoies")
+def get_categories():
+    categories = mongo.db.categories.find()
+    return render_template("home.html", categories=categories)
+
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
