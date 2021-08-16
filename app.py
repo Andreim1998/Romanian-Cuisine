@@ -29,6 +29,10 @@ def get_dishes():
 def get_dishes2():
     return render_template("dishes2.html")
 
+@app.route("/home")
+def home():
+    return render_template("home.html")
+
 @app.route("/get_categoies")
 def get_categories():
     categories = mongo.db.categories.find()
